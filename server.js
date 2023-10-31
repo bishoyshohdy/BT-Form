@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -55,10 +56,10 @@ app.post("/", (req, res) => {
     res.redirect('/success.html');
     });
 
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-      console.log(`Server is listening on port ${port}`);
-});
+    app.use('/.netlify/functions/api', router); 
+    module.exports.handler = serverless(app); 
+
+
 
 
 

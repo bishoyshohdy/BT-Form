@@ -36,7 +36,7 @@ const User = mongoose.model('User', UserSchema);
 
 app.use('/js', express.static(__dirname + '/js'));
 app.use('/css', express.static(__dirname + '/css'));
-// app.use('/Imgs', express.static(__dirname + '/Imgs')); 
+app.use('/Imgs', express.static(__dirname + '/Imgs')); 
 app.use('/', express.static(__dirname + '/'));
 
 app.get("/", (req, res) => {

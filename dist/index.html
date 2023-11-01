@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bosch Event Form</title>
     <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <script src="https://kit.fontawesome.com/224a5660d9.js" crossorigin="anonymous"></script>
 </head>
 
@@ -27,7 +27,7 @@
                 <h5 class="text-center mb-4">Bosch event form</h5>
 
                 <div class="card">
-                    <form class="form-card"  method="post" action="/">
+                    <form class="form-card" id="userForm" method="post" action="/.netlify/functions/submit">
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex">
                                 <label class="form-control-label px-3">First name<span class="text-danger">
@@ -64,6 +64,7 @@
             </div>
         </div>
     </div>
+    
     <script>
         const fnameInput = document.getElementById("fname");
         const lnameInput = document.getElementById("lname");
@@ -91,8 +92,36 @@
 
         checkInputs();
 
+
+
     </script>
-    <script src="js/bootstrap.bundle.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                const userForm = document.getElementById("userForm");
+                userForm.addEventListener("submit", function (event) {
+                    event.preventDefault(); 
+                    fetch('/.netlify/functions/submit', {
+                        method: 'POST',
+                        body: new FormData(userForm),
+                    })
+                        .then((response) => {
+                            if (response.status === 200) {
+                                window.location.href = '/dist/success.html';
+                            } else {
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                });
+            });
+
+    </script>
+
+
+
+    <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/script.js"></script>
 </body>
 

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "netlify build --prod"
+    "build": "netlify deploy --prod"
   },
   "author": "",
   "license": "ISC",
@@ -17,8 +17,8 @@
     "jquery": "^3.7.1",
     "mongodb": "^6.2.0",
     "mongoose": "^8.0.0",
-    "netlify-cli": "12.7.2",
+    "netlify-cli": "^12.7.2",
     "netlify-lambda": "^2.0.15",
-    "serverless-https": "^2.7.0"
+    "serverless-https": "^1.0.0"
   }
 }
